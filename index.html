@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --turquesa: #41b5c3; /* Color exacto de tu loto */
-            --rosa: #d88da2;     /* Color de "Cirugía y Medicina Estética" */
-            --gris: #343d46;     /* Color de las letras ALFRA */
+            --turquesa: #41b5c3; 
+            --rosa: #d88da2;     
+            --gris: #343d46;     
         }
         body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; margin: 0; padding: 20px; display: flex; justify-content: center; }
         .card { max-width: 450px; width: 100%; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 10px solid var(--turquesa); text-align: center; }
@@ -17,14 +17,16 @@
         h2 { color: var(--gris); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin: 10px 0; }
         .eslogan { color: var(--rosa); font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
         .form-group { text-align: left; margin-bottom: 20px; }
-        label { display: block; font-weight: 600; font-size: 12px; color: var(--gris); margin-bottom: 8px; text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #e1e8e8; border-radius: 10px; background: #fdfdfd; font-family: 'Montserrat', sans-serif; box-sizing: border-box; }
-        .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 5px; }
+        label { display: block; font-weight: 600; font-size: 11px; color: var(--gris); margin-bottom: 8px; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #e1e8e8; border-radius: 10px; background: #fdfdfd; font-family: 'Montserrat', sans-serif; box-sizing: border-box; font-size: 14px; }
+        textarea { resize: none; }
+        .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 5px; margin-top: 5px; }
         .stars input { display: none; }
         .stars label { font-size: 35px; color: #eee; cursor: pointer; transition: 0.2s; }
         .stars input:checked ~ label, .stars label:hover, .stars label:hover ~ label { color: #FFD700; }
-        button { width: 100%; background: var(--turquesa); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 20px; box-shadow: 0 5px 15px rgba(65, 181, 195, 0.3); }
-        .footer { margin-top: 30px; font-size: 10px; color: #aaa; border-top: 1px solid #eee; padding-top: 15px; }
+        button { width: 100%; background: var(--turquesa); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 20px; box-shadow: 0 5px 15px rgba(65, 181, 195, 0.3); transition: 0.3s; }
+        button:hover { background: var(--gris); }
+        .footer { margin-top: 30px; font-size: 10px; color: #aaa; border-top: 1px solid #eee; padding-top: 15px; line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -36,10 +38,10 @@
         <form id="alfraForm">
             <div class="form-group">
                 <label>Nombre del Paciente</label>
-                <input type="text" name="nombre" required>
+                <input type="text" name="nombre" placeholder="Tu nombre completo" required>
             </div>
             <div class="form-group">
-                <label>Especialista</label>
+                <label>Especialista que te atendió</label>
                 <select name="especialista" required>
                     <option value="" disabled selected>Seleccione...</option>
                     <option>María Lira Carbajal</option>
@@ -49,11 +51,11 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Procedimiento</label>
-                <input type="text" name="procedimiento" placeholder="Ej. Bótox, Facial..." required>
+                <label>Procedimiento realizado</label>
+                <input type="text" name="procedimiento" placeholder="Ej. Bótox, Rellenos, Facial" required>
             </div>
             <div class="form-group">
-                <label style="text-align:center">¿Qué tan satisfecho quedó?</label>
+                <label style="text-align:center">¿Qué tan satisfecho(a) quedaste?</label>
                 <div class="stars">
                     <input type="radio" id="s5" name="calificacion" value="5"><label for="s5">★</label>
                     <input type="radio" id="s4" name="calificacion" value="4"><label for="s4">★</label>
@@ -62,16 +64,20 @@
                     <input type="radio" id="s1" name="calificacion" value="1" required><label for="s1">★</label>
                 </div>
             </div>
-            <button type="submit" id="btn">ENVIAR OPINIÓN</button>
+            <div class="form-group">
+                <label>Comentarios o Sugerencias</label>
+                <textarea name="comentarios" rows="3" placeholder="Cuéntanos más sobre tu experiencia..."></textarea>
+            </div>
+            <button type="submit" id="btn">ENVIAR MI OPINIÓN</button>
         </form>
         <div class="footer">
             <strong>CLÍNICA ALFRA</strong><br>
-            Rio Fuerte #26, Col. Lomas de Bellavista, Lázaro Cárdenas.
+            Rio Fuerte #26, Col. Lomas de Bellavista,<br>
+            Lázaro Cárdenas, Michoacán.
         </div>
     </div>
 
     <script>
-        // REEMPLAZA ESTO CON TU URL DE GOOGLE APPS SCRIPT
         const scriptURL = 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI';
         const form = document.getElementById('alfraForm');
         form.addEventListener('submit', e => {
@@ -79,8 +85,17 @@
             const btn = document.getElementById('btn');
             btn.disabled = true; btn.innerText = 'ENVIANDO...';
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(res => { alert('¡Gracias!'); form.reset(); btn.disabled = false; btn.innerText = 'ENVIAR OPINIÓN'; })
-            .catch(err => { alert('Error al enviar.'); btn.disabled = false; });
+            .then(res => { 
+                alert('¡Muchas gracias por tu tiempo! Tu opinión ha sido guardada.'); 
+                form.reset(); 
+                btn.disabled = false; 
+                btn.innerText = 'ENVIAR MI OPINIÓN'; 
+            })
+            .catch(err => { 
+                alert('Hubo un error al enviar. Revisa tu internet.'); 
+                btn.disabled = false; 
+                btn.innerText = 'ENVIAR MI OPINIÓN'; 
+            });
         });
     </script>
 </body>
