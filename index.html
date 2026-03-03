@@ -3,33 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satisfacción | Clínica ALFRA</title>
+    <title>Encuesta de Satisfacción | Clínica ALFRA</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --turquesa: #41b5c3; 
             --rosa: #d88da2;     
             --gris: #343d46;     
+            --fondo: #f8fbfc;
         }
-        body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .card { max-width: 450px; width: 100%; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 10px solid var(--turquesa); text-align: center; }
-        .logo { width: 100%; max-width: 280px; height: auto; margin-bottom: 10px; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--fondo); 
+            margin: 0; padding: 20px; 
+            display: flex; justify-content: center; 
+        }
+        .card { 
+            max-width: 450px; width: 100%; background: white; 
+            padding: 35px; border-radius: 25px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.07); 
+            border-top: 10px solid var(--turquesa); 
+            text-align: center; 
+        }
+        .logo { width: 100%; max-width: 250px; height: auto; margin-bottom: 10px; }
         h2 { color: var(--gris); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin: 10px 0; }
-        .eslogan { color: var(--rosa); font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
+        .eslogan { color: var(--rosa); font-size: 11px; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
+        
         .form-group { text-align: left; margin-bottom: 20px; }
         label { display: block; font-weight: 600; font-size: 11px; color: var(--gris); margin-bottom: 8px; text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #e1e8e8; border-radius: 10px; background: #fdfdfd; font-family: 'Montserrat', sans-serif; box-sizing: border-box; font-size: 14px; }
-        textarea { resize: none; }
-        .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 5px; margin-top: 5px; }
+        
+        input, select, textarea { 
+            width: 100%; padding: 14px; border: 1px solid #e1e8e8; border-radius: 10px; 
+            background: #fdfdfd; font-family: 'Montserrat', sans-serif; box-sizing: border-box; font-size: 14px;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--turquesa); background: white; }
+
+        .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-top: 5px; }
         .stars input { display: none; }
-        .stars label { font-size: 35px; color: #eee; cursor: pointer; transition: 0.2s; }
+        .stars label { font-size: 38px; color: #eee; cursor: pointer; transition: 0.2s; }
         .stars input:checked ~ label, .stars label:hover, .stars label:hover ~ label { color: #FFD700; }
-        button { width: 100%; background: var(--turquesa); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 20px; box-shadow: 0 5px 15px rgba(65, 181, 195, 0.3); transition: 0.3s; }
-        button:hover { background: var(--gris); }
-        .footer { margin-top: 30px; font-size: 10px; color: #aaa; border-top: 1px solid #eee; padding-top: 15px; line-height: 1.5; }
+
+        button { 
+            width: 100%; background: var(--turquesa); color: white; border: none; 
+            padding: 20px; border-radius: 15px; font-size: 16px; font-weight: 600; 
+            cursor: pointer; margin-top: 25px; transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(65, 181, 195, 0.3);
+        }
+        button:hover { background: var(--gris); transform: translateY(-2px); }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+
+        .footer { 
+            margin-top: 30px; font-size: 10px; color: #aaa; 
+            border-top: 1px solid #eee; padding-top: 20px; line-height: 1.6; 
+        }
     </style>
 </head>
 <body>
+
     <div class="card">
         <img src="alfra-removebg-preview.png" class="logo" alt="Clínica ALFRA">
         <h2>Encuesta de Satisfacción</h2>
@@ -38,22 +68,25 @@
         <form id="alfraForm">
             <div class="form-group">
                 <label>Nombre del Paciente</label>
-                <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
             </div>
+
             <div class="form-group">
                 <label>Especialista que te atendió</label>
                 <select name="especialista" required>
-                    <option value="" disabled selected>Seleccione...</option>
-                    <option>María Lira Carbajal</option>
-                    <option>Erika Ivone Romero</option>
-                    <option>Yamilet Patricio</option>
-                    <option>Esmeralda Rodriguez</option>
+                    <option value="" disabled selected>Selecciona una opción...</option>
+                    <option value="María Lira Carbajal">María Lira Carbajal</option>
+                    <option value="Erika Ivone Romero">Erika Ivone Romero</option>
+                    <option value="Yamilet Patricio">Yamilet Patricio</option>
+                    <option value="Esmeralda Rodriguez">Esmeralda Rodriguez</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label>Procedimiento realizado</label>
                 <input type="text" name="procedimiento" placeholder="Ej. Bótox, Rellenos, Facial" required>
             </div>
+
             <div class="form-group">
                 <label style="text-align:center">¿Qué tan satisfecho(a) quedaste?</label>
                 <div class="stars">
@@ -64,12 +97,15 @@
                     <input type="radio" id="s1" name="calificacion" value="1" required><label for="s1">★</label>
                 </div>
             </div>
+
             <div class="form-group">
                 <label>Comentarios o Sugerencias</label>
-                <textarea name="comentarios" rows="3" placeholder="Cuéntanos más sobre tu experiencia..."></textarea>
+                <textarea name="comentarios" rows="3" placeholder="Tu opinión nos ayuda a mejorar..."></textarea>
             </div>
+
             <button type="submit" id="btn">ENVIAR MI OPINIÓN</button>
         </form>
+
         <div class="footer">
             <strong>CLÍNICA ALFRA</strong><br>
             Rio Fuerte #26, Col. Lomas de Bellavista,<br>
@@ -78,24 +114,28 @@
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwHfhZTLIUAS4T29dQpeJ9KTn_a_aHkWaBLN6p1dUA8daMPS6q9G2K1zmw_2EA-Y0713g/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwHfhZTLIUAS4T29dQpeJ9KTn_a_aHkWaBLN6pidUA8daMPS6q9G2K1zmw_2EA-Y0733g/exec';
         const form = document.getElementById('alfraForm');
+
         form.addEventListener('submit', e => {
             e.preventDefault();
             const btn = document.getElementById('btn');
-            btn.disabled = true; btn.innerText = 'ENVIANDO...';
+            btn.disabled = true;
+            btn.innerText = 'ENVIANDO...';
+
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(res => { 
-                alert('¡Muchas gracias por tu tiempo! Tu opinión ha sido guardada.'); 
-                form.reset(); 
-                btn.disabled = false; 
-                btn.innerText = 'ENVIAR MI OPINIÓN'; 
-            })
-            .catch(err => { 
-                alert('Hubo un error al enviar. Revisa tu internet.'); 
-                btn.disabled = false; 
-                btn.innerText = 'ENVIAR MI OPINIÓN'; 
-            });
+                .then(response => {
+                    alert('¡Muchas gracias! Tu opinión ha sido guardada con éxito.');
+                    form.reset();
+                    btn.disabled = false;
+                    btn.innerText = 'ENVIAR MI OPINIÓN';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Hubo un error al enviar. Por favor, intenta de nuevo.');
+                    btn.disabled = false;
+                    btn.innerText = 'ENVIAR MI OPINIÓN';
+                });
         });
     </script>
 </body>
