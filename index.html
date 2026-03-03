@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satisfacción | Clínica ALFRA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --turquesa: #41b5c3; /* Color exacto de tu loto */
+            --rosa: #d88da2;     /* Color de "Cirugía y Medicina Estética" */
+            --gris: #343d46;     /* Color de las letras ALFRA */
+        }
+        body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .card { max-width: 450px; width: 100%; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 10px solid var(--turquesa); text-align: center; }
+        .logo { width: 100%; max-width: 280px; height: auto; margin-bottom: 10px; }
+        h2 { color: var(--gris); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin: 10px 0; }
+        .eslogan { color: var(--rosa); font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
+        .form-group { text-align: left; margin-bottom: 20px; }
+        label { display: block; font-weight: 600; font-size: 12px; color: var(--gris); margin-bottom: 8px; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #e1e8e8; border-radius: 10px; background: #fdfdfd; font-family: 'Montserrat', sans-serif; box-sizing: border-box; }
+        .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 5px; }
+        .stars input { display: none; }
+        .stars label { font-size: 35px; color: #eee; cursor: pointer; transition: 0.2s; }
+        .stars input:checked ~ label, .stars label:hover, .stars label:hover ~ label { color: #FFD700; }
+        button { width: 100%; background: var(--turquesa); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 20px; box-shadow: 0 5px 15px rgba(65, 181, 195, 0.3); }
+        .footer { margin-top: 30px; font-size: 10px; color: #aaa; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="alfra-removebg-preview.png" class="logo" alt="Clínica ALFRA">
+        <h2>Encuesta de Satisfacción</h2>
+        <div class="eslogan">Cirugía y Medicina Estética</div>
+        
+        <form id="alfraForm">
+            <div class="form-group">
+                <label>Nombre del Paciente</label>
+                <input type="text" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label>Especialista</label>
+                <select name="especialista" required>
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option>María Lira Carbajal</option>
+                    <option>Erika Ivone Romero</option>
+                    <option>Yamilet Patricio</option>
+                    <option>Esmeralda Rodriguez</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Procedimiento</label>
+                <input type="text" name="procedimiento" placeholder="Ej. Bótox, Facial..." required>
+            </div>
+            <div class="form-group">
+                <label style="text-align:center">¿Qué tan satisfecho quedó?</label>
+                <div class="stars">
+                    <input type="radio" id="s5" name="calificacion" value="5"><label for="s5">★</label>
+                    <input type="radio" id="s4" name="calificacion" value="4"><label for="s4">★</label>
+                    <input type="radio" id="s3" name="calificacion" value="3"><label for="s3">★</label>
+                    <input type="radio" id="s2" name="calificacion" value="2"><label for="s2">★</label>
+                    <input type="radio" id="s1" name="calificacion" value="1" required><label for="s1">★</label>
+                </div>
+            </div>
+            <button type="submit" id="btn">ENVIAR OPINIÓN</button>
+        </form>
+        <div class="footer">
+            <strong>CLÍNICA ALFRA</strong><br>
+            Rio Fuerte #26, Col. Lomas de Bellavista, Lázaro Cárdenas.
+        </div>
+    </div>
+
+    <script>
+        // REEMPLAZA ESTO CON TU URL DE GOOGLE APPS SCRIPT
+        const scriptURL = 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI';
+        const form = document.getElementById('alfraForm');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = document.getElementById('btn');
+            btn.disabled = true; btn.innerText = 'ENVIANDO...';
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(res => { alert('¡Gracias!'); form.reset(); btn.disabled = false; btn.innerText = 'ENVIAR OPINIÓN'; })
+            .catch(err => { alert('Error al enviar.'); btn.disabled = false; });
+        });
+    </script>
+</body>
+</html>
